@@ -97,18 +97,6 @@ class _PlayRecordedVideoState extends State<PlayRecordedVideo> {
                                       "-output.mp4");
                                 });
 
-                                // await fFmpeg
-                                //     .execute('-i ' +
-                                //         widget.path +
-                                //         ' -i /data/user/0/com.example.video_filter/cache/REC6840151975487480678.mp4 -filter_complex "[0:0][1:0]overlay[out]" -shortest -map [out] -map 0:1 -pix_fmt yuv420p -c:a copy -c:v libx264 -crf 18 ' +
-                                //         filePath +
-                                //         '-output.mp4')
-                                //     .then((value) {
-                                //   log(value.toString());
-                                //   log("Video Filtered Location: " +
-                                //       filePath +
-                                //       "-output.mp4");
-                                // });
                                 bool fileExists =
                                     File(filePath + "-output.mp4").existsSync();
                                 if (fileExists) {

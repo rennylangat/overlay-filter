@@ -18,6 +18,7 @@ class _VideoState extends State<Video> {
   late CameraController controller;
   List<CameraDescription>? cameras;
   bool cameraInit = false;
+  bool frontCamera = false;
 
   Future<void> initCamera() async {
     availableCameras().then((value) {
@@ -73,8 +74,26 @@ class _VideoState extends State<Video> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  RecordButton(
-                    controller: controller,
+                  Row(
+                    children: [
+                      RecordButton(
+                        controller: controller,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            frontCamera = !frontCamera;
+                            controller = CameraController(
+                              frontCamera ? cameras![0] : cameras![1],
+                              ResolutionPreset.ultraHigh,
+                            );
+                          });
+                        },
+                        child: Container(
+                          child: Icon(Icons.flip_camera_android),
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),
